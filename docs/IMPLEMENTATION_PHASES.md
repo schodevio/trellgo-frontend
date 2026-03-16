@@ -11,7 +11,6 @@ Initialize the frontend project.
 
 Tasks:
 
-- create Nuxt 3 project
 - enable TypeScript
 - install Tailwind CSS v4
 - install PrimeVue
