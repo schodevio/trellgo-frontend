@@ -68,12 +68,6 @@ Features:
 - auth store using Pinia
 - protected routes middleware
 
-Components:
-
-AuthForm
-AuthInput
-AuthCard
-
 Goal:
 
 User can register, confirm account, login and stay authenticated.
