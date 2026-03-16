@@ -1,4 +1,5 @@
 import tailwindcss from '@tailwindcss/vite'
+
 import Aura from '@primevue/themes/aura'
 import { definePreset } from '@primevue/themes'
 
@@ -24,8 +25,16 @@ const TrellGoTheme = definePreset(Aura, {
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+  ssr: false,
 
   modules: ['@primevue/nuxt-module', '@pinia/nuxt'],
+
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false,
+    },
+  ],
 
   css: ['~/assets/css/main.css', '~/assets/scss/main.scss'],
 
@@ -49,4 +58,5 @@ export default defineNuxtConfig({
       ],
     },
   },
+
 })

@@ -34,6 +34,6 @@ export const authService = {
     $fetch<AuthTokenResponse>('/auth/refresh', {
       method: 'POST',
       baseURL: BASE_URL,
-      credentials: 'include',
+      credentials: 'include'
     }),
 }

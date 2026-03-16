@@ -85,15 +85,9 @@ import { ref } from 'vue'
 import { useAuthStore } from '~/stores/auth'
 import { ApiError } from '~/types/apiError'
 
-import {
-  Button,
-  InputText,
-  Message,
-  Password
-} from 'primevue'
+definePageMeta({ layout: false })
 
 const authStore = useAuthStore()
-const router = useRouter()
 
 const formData = ref({
   email: '',
@@ -109,7 +103,7 @@ const handleSubmit = async () => {
 
   try {
     await authStore.login(formData.value)
-    await router.push('/')
+    await navigateTo('/boards')
   } catch (err) {
     error.value = err
   } finally {

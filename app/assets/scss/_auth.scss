@@ -1,5 +1,190 @@
 @use 'variables' as *;
 
+// ─── Layout shell ──────────────────────────────────────────────────────────
+
+.auth-layout {
+  display: flex;
+  min-height: 100vh;
+
+  &__panel {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #fff;
+    padding: 3rem 1.5rem;
+
+    @media (min-width: 1024px) {
+      width: 50%;
+      padding: 3rem 4rem;
+    }
+  }
+
+  &__inner {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 28rem;
+  }
+
+  &__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+    text-decoration: none;
+
+    &:hover .auth-layout__badge {
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.15);
+    }
+  }
+
+  &__badge {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    background: linear-gradient(to bottom right, #10b981, #0d9488);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 900;
+    font-size: 0.875rem;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 0.1);
+    transition: box-shadow 0.2s ease;
+  }
+
+  &__brand-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: $text-primary;
+  }
+
+  &__hero {
+    display: none;
+
+    @media (min-width: 1024px) {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(to bottom right, #059669, #0d9488, #065f46);
+    }
+  }
+
+  &__blob {
+    position: absolute;
+    border-radius: 9999px;
+    pointer-events: none;
+
+    &--tr {
+      top: -8rem;
+      right: -8rem;
+      width: 24rem;
+      height: 24rem;
+      background-color: rgb(255 255 255 / 0.1);
+      filter: blur(48px);
+    }
+
+    &--bl {
+      bottom: -10rem;
+      left: -5rem;
+      width: 20rem;
+      height: 20rem;
+      background-color: rgb(94 234 212 / 0.2);
+      filter: blur(40px);
+    }
+  }
+
+  &__ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 9999px;
+    border: 1px solid rgb(255 255 255 / 0.1);
+    pointer-events: none;
+
+    &--lg {
+      width: 600px;
+      height: 600px;
+    }
+
+    &--md {
+      width: 400px;
+      height: 400px;
+    }
+  }
+
+  &__dotgrid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.2;
+    pointer-events: none;
+    background-image: radial-gradient(circle, white 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  &__copy {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 0 3rem;
+    max-width: 32rem;
+  }
+
+  &__eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #a7f3d0;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: 1.5rem;
+  }
+
+  &__body {
+    font-size: 1.125rem;
+    color: #d1fae5;
+    line-height: 1.625;
+  }
+
+  &__highlight {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  &__pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+  }
+
+  &__pill {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    background-color: rgb(255 255 255 / 0.15);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 500;
+    backdrop-filter: blur(4px);
+  }
+}
+
+// ─── Form components ───────────────────────────────────────────────────────
+
 .auth-heading {
   margin-bottom: 2rem;
 

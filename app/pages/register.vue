@@ -49,15 +49,12 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import InputText from 'primevue/inputtext'
-import Password from 'primevue/password'
-import Button from 'primevue/button'
-import Message from 'primevue/message'
 import { useAuthStore } from '~/stores/auth'
 import { ApiError } from '~/types/apiError'
 
+definePageMeta({ layout: false })
+
 const authStore = useAuthStore()
-const router = useRouter()
 
 const email = ref('')
 const password = ref('')
@@ -72,7 +69,7 @@ const handleSubmit = async () => {
 
   try {
     await authStore.register({ email: email.value, password: password.value })
-    await router.push('/confirm')
+    await navigateTo('/confirm')
   } catch (err) {
     if (err instanceof ApiError) {
       if (err.isValidation && err.details) {

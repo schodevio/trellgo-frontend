@@ -1,0 +1,116 @@
+@use 'variables' as *;
+
+// ─── Boards page shell ─────────────────────────────────────────────────────
+
+.boards-page {
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.75rem;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $text-primary;
+  }
+
+  &__loading {
+    display: flex;
+    justify-content: center;
+    padding: 4rem 0;
+  }
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 4rem 0;
+    text-align: center;
+  }
+
+  &__empty-text {
+    font-size: 0.9375rem;
+    color: $text-muted;
+  }
+}
+
+// ─── Boards grid ───────────────────────────────────────────────────────────
+
+.boards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+// ─── Board card ────────────────────────────────────────────────────────────
+
+.board-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #059669 0%, #0d9488 100%);
+  border-radius: 0.75rem;
+  padding: 1.25rem 1rem 0.75rem;
+  cursor: pointer;
+  min-height: 7rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgb(0 0 0 / 0.15);
+  }
+
+  &__body {
+    flex: 1;
+  }
+
+  &__name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    word-break: break-word;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.25rem;
+    margin-top: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  &:hover &__actions {
+    opacity: 1;
+  }
+
+  &__action-btn {
+    color: rgb(255 255 255 / 0.85) !important;
+
+    &:hover {
+      background-color: rgb(255 255 255 / 0.15) !important;
+      color: #fff !important;
+    }
+  }
+}
+
+// ─── Board dialog ──────────────────────────────────────────────────────────
+
+.board-dialog {
+  width: 100%;
+  max-width: 28rem;
+
+  &__form {
+    padding: 0.25rem 0 0.5rem;
+  }
+}
+
+// ─── Board detail page ─────────────────────────────────────────────────────
+
+.board-detail-page {
+  height: 100%;
+}

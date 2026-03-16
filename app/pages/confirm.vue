@@ -43,13 +43,12 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import Button from 'primevue/button'
-import Message from 'primevue/message'
 import { authService } from '~/services/auth'
 import { ApiError } from '~/types/apiError'
 
+definePageMeta({ layout: false })
+
 const route = useRoute()
-const router = useRouter()
 
 const token = route.query.token as string | undefined
 const loading = ref(false)
@@ -65,7 +64,7 @@ const handleConfirm = async () => {
   try {
     await authService.confirm(token)
     confirmed.value = true
-    setTimeout(() => router.push('/login'), 2000)
+    setTimeout(() => navigateTo('/login'), 2000)
   } catch (err) {
     error.value = err instanceof ApiError ? err.message : 'An unexpected error occurred.'
   } finally {

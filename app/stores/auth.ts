@@ -15,7 +15,6 @@ export const useAuthStore = defineStore('auth', () => {
   const initAuth = async () => {
     try {
       const data = await authService.refresh()
-
       setAccessToken(data.access_token)
       isAuthenticated.value = true
     } catch {
