@@ -1,0 +1,30 @@
+{
+  "name": "TrellGo",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "nuxt-app",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "forwardPorts": [3030],
+
+  "features": {
+    "ghcr.io/jungaretti/features/make:1": {},
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "24"
+    }
+  },
+
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bradlc.vscode-tailwindcss",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "github.copilot-chat",
+        "sleistner.vscode-fileutils",
+        "vue.volar"
+      ]
+    }
+  },
+
+  "postCreateCommand": "yarn install"
+}
