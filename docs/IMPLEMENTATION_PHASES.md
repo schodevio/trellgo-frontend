@@ -38,15 +38,11 @@ Implement a reusable HTTP client for communication with the backend API.
 
 Tasks:
 
-- create API client using $fetch
 - configure baseURL
+- create useApi composable as a wrapper for $fetch
 - implement Authorization header support
 - implement automatic refresh token logic
-- handle API errors
-
-Example location:
-
-services/api.ts
+- take care of types (use TypeScript)
 
 Goal:
 
