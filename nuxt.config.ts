@@ -36,7 +36,11 @@ export default defineNuxtConfig({
     },
   ],
 
-  css: ['~/assets/css/main.css', '~/assets/scss/main.scss'],
+  css: [
+    '@tabler/icons-webfont/dist/tabler-icons.min.css',
+    '~/assets/css/main.css',
+    '~/assets/scss/main.scss',
+  ],
 
   primevue: {
     options: {

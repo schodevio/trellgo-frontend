@@ -1,65 +1,74 @@
 <template>
   <Dialog
-    :visible="visible"
-    modal
+    @update:visible="$emit('update:visible', $event)"
     header="Create board"
     class="board-dialog"
-    @update:visible="$emit('update:visible', $event)"
+    :visible
+    modal
   >
-    <form class="board-dialog__form" @submit.prevent="handleSubmit">
+    <form
+      @submit.prevent="$emit('submit', localBoard)"
+      class="board-dialog__form"
+    >
       <div class="auth-field">
-        <label class="auth-field__label" for="create-board-name">Board name</label>
+        <label class="auth-field__label" for="create-board-name">Board Name</label>
+
         <InputText
           id="create-board-name"
-          v-model="name"
+          v-model="localBoard.name"
           placeholder="e.g. Sprint 1"
-          :invalid="!!nameError"
-          fluid
+          :invalid="!!errors.name"
           autofocus
+          fluid
         />
-        <small v-if="nameError" class="auth-field__error">{{ nameError }}</small>
+
+        <small v-if="errors.name" class="auth-field__error">
+          {{ errors.name }}
+        </small>
       </div>
     </form>
 
     <template #footer>
-      <Button label="Cancel" text severity="secondary" @click="$emit('update:visible', false)" />
-      <Button label="Create" :loading="loading" @click="handleSubmit" />
+      <Button
+        @click="$emit('update:visible', false)"
+        severity="secondary"
+        label="Cancel"
+        text
+      />
+
+      <Button
+        @click="$emit('submit', localBoard)"
+        type="submit"
+        label="Create"
+        :loading
+      />
     </template>
   </Dialog>
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, type PropType } from 'vue'
+import type { Board } from '~/types/board'
 
-const props = defineProps<{ visible: boolean }>()
-const emit = defineEmits<{
-  'update:visible': [value: boolean]
-  created: [name: string]
-}>()
-
-const name = ref('')
-const nameError = ref('')
-const loading = ref(false)
-
-watch(() => props.visible, (val) => {
-  if (val) {
-    name.value = ''
-    nameError.value = ''
+const props = defineProps({
+  visible: {
+    type: Boolean as PropType<boolean>,
+    required: true,
+  },
+  errors: {
+    type: Object as PropType<Record<string, string>>,
+    default: () => ({})
+  },
+  loading: {
+    type: Boolean as PropType<boolean>,
+    default: false
   }
 })
 
-const handleSubmit = async () => {
-  nameError.value = ''
-  if (!name.value.trim()) {
-    nameError.value = 'Board name is required.'
-    return
-  }
-  loading.value = true
-  try {
-    emit('created', name.value.trim())
-    emit('update:visible', false)
-  } finally {
-    loading.value = false
-  }
-}
+const emit = defineEmits<{
+  'update:visible': [value: boolean]
+  'submit': [board: Board]
+}>()
+
+const localBoard = ref<Board>({ ...props.board })
 </script>

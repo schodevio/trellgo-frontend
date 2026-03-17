@@ -6,34 +6,42 @@
 
     <div class="board-card__actions" @click.stop>
       <Button
-        icon="pi pi-pencil"
-        text
-        rounded
-        size="small"
-        severity="secondary"
+        @click="$emit('edit', board)"
         class="board-card__action-btn"
         aria-label="Edit board"
-        @click="$emit('edit', board)"
+        severity="secondary"
+        icon="ti ti-pencil"
+        size="small"
+        rounded
+        text
       />
       <Button
-        icon="pi pi-trash"
-        text
-        rounded
-        size="small"
-        severity="danger"
+        @click="$emit('delete', board)"
         class="board-card__action-btn"
         aria-label="Delete board"
-        @click="$emit('delete', board)"
+        icon="ti ti-trash"
+        severity="danger"
+        size="small"
+        rounded
+        text
       />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import Button from 'primevue/button'
+import { type PropType } from 'vue'
+
+import { Button } from 'primevue'
 import type { Board } from '~/types/board'
 
-defineProps<{ board: Board }>()
+defineProps({
+  board: {
+    type: Object as PropType<Board>,
+    required: true,
+  }
+})
+
 defineEmits<{
   open: [id: string]
   edit: [board: Board]

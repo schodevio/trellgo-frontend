@@ -11,6 +11,7 @@ export const useBoardsStore = defineStore('boards', () => {
 
   const fetchBoards = async () => {
     loading.value = true
+
     try {
       boards.value = await boardsService.getAll()
     } finally {
@@ -20,6 +21,7 @@ export const useBoardsStore = defineStore('boards', () => {
 
   const fetchBoard = async (id: string) => {
     loading.value = true
+
     try {
       currentBoard.value = await boardsService.getOne(id)
     } finally {
@@ -36,14 +38,18 @@ export const useBoardsStore = defineStore('boards', () => {
   const updateBoard = async (id: string, payload: UpdateBoardPayload): Promise<Board> => {
     const updated = await boardsService.update(id, payload)
     const index = boards.value.findIndex(b => b.id === id)
+
     if (index !== -1) boards.value[index] = updated
     if (currentBoard.value?.id === id) currentBoard.value = updated
+
     return updated
   }
 
   const deleteBoard = async (id: string) => {
     await boardsService.delete(id)
-    boards.value = boards.value.filter(b => b.id !== id)
+    const index = boards.value.findIndex(b => b.id === id)
+
+    if (index !== -1) boards.value.splice(index, 1)
     if (currentBoard.value?.id === id) currentBoard.value = null
   }
 

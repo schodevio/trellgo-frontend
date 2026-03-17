@@ -19,6 +19,7 @@
         "bradlc.vscode-tailwindcss",
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
+        "ms-vscode.vscode-typescript-next",
         "github.copilot-chat",
         "sleistner.vscode-fileutils",
         "vue.volar"

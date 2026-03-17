@@ -12,7 +12,7 @@ export const boardsService = {
     apiService.post<Board>('/boards', payload),
 
   update: (id: string, payload: UpdateBoardPayload): Promise<Board> =>
-    apiService.patch<Board>(`/boards/${id}`, payload),
+    apiService.put<Board>(`/boards/${id}`, payload),
 
   delete: (id: string): Promise<void> =>
     apiService.delete<void>(`/boards/${id}`),

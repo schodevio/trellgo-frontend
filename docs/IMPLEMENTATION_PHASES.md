@@ -106,6 +106,7 @@ Features:
 
 - fetch user boards
 - create board
+- update board
 - delete board
 - board list UI
 
@@ -113,6 +114,7 @@ Components:
 
 BoardCard
 CreateBoardDialog
+UpdateBoardDialog
 BoardsGrid
 
 Goal:
